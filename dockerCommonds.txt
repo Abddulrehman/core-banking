@@ -1,0 +1,42 @@
+   
+   
+   
+   =============================================================
+   ............ Docker Commonds Basic ..........................
+   =============================================================
+   
+   
+	docker –version                                        for docker version check
+	docker pull <imageName>                                This command is used to pull images from the docker repository(hub.docker.com)
+	docker run -it -d <imageName>                          This command is used to create a container from an image
+	docker ps                                              This command is used to list the running containers
+	docker ps -a                                           This command is used to show all the running and exited containers
+	docker exec  docker exec -it <container id> bash       This command is used to access the running container
+	docker stop <container id>                             This command stops a running container
+	docker kill <container id>                             This command kills the container by stopping its execution immediately. 
+	                                                       The difference between ‘docker kill’ and ‘docker stop’ is that ‘docker stop’ 
+	                                                       gives the container time to shutdown gracefully, in situations when it is taking too much time for getting the container to stop, 
+	                                                       one can opt to kill it
+	docker commit <conatainer id>                          This command creates a new image of an edited container on the local system
+	docker login                                           This command is used to login to the docker hub repository
+	docker push <username/image name>                      This command is used to push an image to the docker hub repository
+ 	docker images                                          This command lists all the locally stored docker images
+	docker rm <container id>                               This command is used to delete a stopped container
+	docker rmi <image-id>                                  This command is used to delete an image from local storage
+	docker build <path to docker file>                     This command is used to build an image from a specified docker file
+	
+	
+   =============================================================
+   ............ Git Commonds Basic ..........................
+   =============================================================
+	
+	
+	git init
+	git status
+	git add -A file Namw
+	git commit -m "first commit"
+	git config --global user.name "teresoluser"
+	git config --global user.email "arehman1"
+	git branch -M main
+	git remote add origin https://github.com/abdul-samee06/springcore.git
+	git push -u origin main
