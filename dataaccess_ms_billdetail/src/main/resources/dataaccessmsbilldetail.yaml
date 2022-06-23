@@ -1,0 +1,649 @@
+---
+openapi: 3.0.3
+info:
+  title: dataaccess-ms-billdetail
+  description: "Dataaccess Ms Bill Details microservice to fetch,insert,updtae and\
+    \ delete data related to bill service."
+  termsOfService: Teresol Proprioty Rights Reserved
+  contact:
+    name: Teresol Support
+    url: http://teresol.com/contact
+    email: techsupport@teresol.com
+  version: ver 1.0.0
+paths:
+  /dataaccess-ms-billDetail/damsBillDetail:
+    get:
+      tags:
+      - Main Resource
+      parameters:
+      - name: branchCode
+        in: query
+        required: true
+        schema:
+          type: string
+          nullable: false
+      - name: chequeNo
+        in: query
+        schema:
+          type: number
+      - name: companyId
+        in: query
+        schema:
+          type: number
+      - name: loginBranchCode
+        in: query
+        required: true
+        schema:
+          type: string
+          nullable: false
+      - name: response
+        in: query
+        required: true
+        schema:
+          minItems: 1
+          type: array
+          items:
+            type: string
+      - name: status
+        in: query
+        schema:
+          type: number
+      - name: transactionReferenceNo
+        in: query
+        schema:
+          type: number
+      - name: transferDate
+        in: query
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetBillDetailResponseDto'
+    put:
+      tags:
+      - Main Resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBillDetailRequestDto'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillDetailResponseDto'
+    post:
+      tags:
+      - Main Resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBillDetailRequestDto'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBillDetailResponseDto'
+    delete:
+      tags:
+      - Main Resource
+      parameters:
+      - name: billMonth
+        in: query
+        required: true
+        schema:
+          type: number
+          nullable: false
+      - name: branchCode
+        in: query
+        required: true
+        schema:
+          type: number
+          nullable: false
+      - name: companyId
+        in: query
+        required: true
+        schema:
+          type: number
+          nullable: false
+      - name: consumerNo
+        in: query
+        required: true
+        schema:
+          type: number
+          nullable: false
+      - name: loginBranchCode
+        in: query
+        required: true
+        schema:
+          type: string
+          nullable: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteBillResponseDto'
+components:
+  schemas:
+    BillDetailDto:
+      type: object
+      properties:
+        branchCode:
+          type: number
+        transactionReferenceNo:
+          type: number
+        transactionReferenceYear:
+          type: number
+        transactionDate:
+          format: date
+          type: string
+        transactionTime:
+          $ref: '#/components/schemas/Time'
+        slipNo:
+          type: string
+        companyId:
+          type: number
+        billMonth:
+          type: number
+        onlineReferenceNo:
+          type: number
+        sourceBranchCode:
+          type: number
+        targetBranchCode:
+          type: number
+        rsvBranchCode:
+          type: number
+        status:
+          type: string
+        transactionAmount:
+          type: number
+        account1:
+          type: number
+        company:
+          type: string
+        remarks:
+          type: string
+        postBy:
+          type: string
+        authBy:
+          type: string
+        stan:
+          type: number
+        contractAccount:
+          type: number
+        chequeNumber:
+          type: number
+        barcode:
+          type: string
+        chequeAmount:
+          type: number
+        accountType:
+          type: number
+        customerNumber:
+          type: number
+        runNo:
+          type: number
+        checkDigit:
+          type: number
+        customerId:
+          type: string
+        dueDate:
+          format: date
+          type: string
+        billAmount:
+          type: number
+        afterDueDateAmount:
+          type: number
+        otcId:
+          type: number
+        validityDate:
+          format: date
+          type: string
+        transactionType:
+          type: string
+    CalendarDate:
+      type: object
+      properties:
+        era:
+          $ref: '#/components/schemas/Era'
+        year:
+          format: int32
+          type: integer
+        month:
+          format: int32
+          type: integer
+        dayOfMonth:
+          format: int32
+          type: integer
+        dayOfWeek:
+          format: int32
+          type: integer
+        leapYear:
+          type: boolean
+        hours:
+          format: int32
+          type: integer
+        minutes:
+          format: int32
+          type: integer
+        seconds:
+          format: int32
+          type: integer
+        millis:
+          format: int32
+          type: integer
+        fraction:
+          format: int64
+          type: integer
+        normalized:
+          type: boolean
+        zoneinfo:
+          $ref: '#/components/schemas/TimeZone'
+        zoneOffset:
+          format: int32
+          type: integer
+        daylightSaving:
+          format: int32
+          type: integer
+        forceStandardTime:
+          type: boolean
+        locale:
+          $ref: '#/components/schemas/Locale'
+        timeOfDay:
+          format: int64
+          type: integer
+        standardTime:
+          type: boolean
+        daylightTime:
+          type: boolean
+        zone:
+          $ref: '#/components/schemas/TimeZone'
+    CreateBillDetailRequestDto:
+      required:
+      - loginBranchCode
+      - branchCode
+      - transactionDate
+      - transactionTime
+      - slipNo
+      - companyId
+      - billMonth
+      type: object
+      properties:
+        loginBranchCode:
+          type: string
+          nullable: false
+        branchCode:
+          type: number
+          nullable: false
+        transactionReferenceNo:
+          type: number
+        transactionReferenceYear:
+          type: number
+        transactionDate:
+          format: date
+          type: string
+          nullable: false
+        transactionTime:
+          allOf:
+          - $ref: '#/components/schemas/Time'
+          - nullable: false
+        slipNo:
+          type: string
+          nullable: false
+        companyId:
+          type: number
+          nullable: false
+        billMonth:
+          type: number
+          nullable: false
+        onlineReferenceNo:
+          type: number
+        sourceBranchCode:
+          type: number
+        targetBranchCode:
+          type: number
+        rsvBranchCode:
+          type: number
+        status:
+          type: number
+        transactionAmount:
+          type: number
+        account1:
+          type: number
+        company:
+          type: string
+        remarks:
+          type: string
+        postBy:
+          type: string
+        authBy:
+          type: string
+        stan:
+          type: number
+        contractAccount:
+          type: number
+        chequeNumber:
+          type: number
+        barcode:
+          type: string
+        chequeAmount:
+          type: number
+        accountType:
+          type: number
+        customerNumber:
+          type: number
+        runNo:
+          type: number
+        checkDigit:
+          type: number
+        customerId:
+          type: string
+        dueDate:
+          format: date
+          type: string
+        billAmount:
+          type: number
+        afterDueDateAmount:
+          type: number
+        otcId:
+          type: number
+        validityDate:
+          format: date
+          type: string
+        transactionType:
+          type: string
+    CreateBillDetailResponseDto:
+      type: object
+      properties:
+        rowsInserted:
+          format: int32
+          type: integer
+        errorMessage:
+          type: string
+        mBoolean:
+          type: boolean
+    Date:
+      type: object
+      properties:
+        era:
+          $ref: '#/components/schemas/Era'
+        year:
+          format: int32
+          type: integer
+        month:
+          format: int32
+          type: integer
+        dayOfMonth:
+          format: int32
+          type: integer
+        dayOfWeek:
+          format: int32
+          type: integer
+        leapYear:
+          type: boolean
+        hours:
+          format: int32
+          type: integer
+        minutes:
+          format: int32
+          type: integer
+        seconds:
+          format: int32
+          type: integer
+        millis:
+          format: int32
+          type: integer
+        fraction:
+          format: int64
+          type: integer
+        normalized:
+          type: boolean
+        zoneinfo:
+          $ref: '#/components/schemas/TimeZone'
+        zoneOffset:
+          format: int32
+          type: integer
+        daylightSaving:
+          format: int32
+          type: integer
+        forceStandardTime:
+          type: boolean
+        locale:
+          $ref: '#/components/schemas/Locale'
+        timeOfDay:
+          format: int64
+          type: integer
+        standardTime:
+          type: boolean
+        daylightTime:
+          type: boolean
+        zone:
+          $ref: '#/components/schemas/TimeZone'
+        cachedYear:
+          format: int32
+          type: integer
+        cachedFixedDateJan1:
+          format: int64
+          type: integer
+        cachedFixedDateNextJan1:
+          format: int64
+          type: integer
+        normalizedYear:
+          format: int32
+          type: integer
+        cachedJan1:
+          format: int64
+          type: integer
+    DeleteBillResponseDto:
+      type: object
+      properties:
+        branchCode:
+          type: number
+        companyId:
+          type: number
+        consumerNo:
+          type: string
+        billMonth:
+          type: string
+        rowsDeleted:
+          format: int32
+          type: integer
+        errorMessage:
+          type: string
+        mBoolean:
+          type: boolean
+    Era:
+      type: object
+      properties:
+        name:
+          type: string
+        abbr:
+          type: string
+        since:
+          format: int64
+          type: integer
+        sinceDate:
+          $ref: '#/components/schemas/CalendarDate'
+        localTime:
+          type: boolean
+        hash:
+          format: int32
+          type: integer
+        abbreviation:
+          type: string
+    GetBillDetailResponseDto:
+      type: object
+      properties:
+        transactionReferenceNo:
+          type: number
+        transactionReferenceYear:
+          type: number
+        billMonth:
+          type: number
+        account1:
+          type: string
+        companyId:
+          type: number
+        slipNo:
+          maxLength: 25
+          type: string
+        transferAmount:
+          type: number
+        transferDate:
+          format: date
+          type: string
+        transferTime:
+          $ref: '#/components/schemas/Time'
+        onlineRefNo:
+          type: number
+        sourceBranchCode:
+          type: number
+        targetBranchCode:
+          type: number
+        receiverBranchCode:
+          type: number
+        stan:
+          type: string
+        company:
+          type: string
+        remarks:
+          maxLength: 15
+          type: string
+        status:
+          type: number
+        postBy:
+          type: string
+        authBy:
+          type: string
+        customerId:
+          type: string
+        contactAccount:
+          type: string
+        errorMessage:
+          type: string
+        mBoolean:
+          type: boolean
+    Locale:
+      type: object
+      properties:
+        language:
+          type: string
+        script:
+          type: string
+        country:
+          type: string
+        variant:
+          type: string
+        extensionKeys:
+          uniqueItems: true
+          type: array
+          items:
+            format: byte
+            type: string
+        unicodeLocaleAttributes:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        unicodeLocaleKeys:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        iSO3Language:
+          type: string
+        iSO3Country:
+          type: string
+        displayLanguage:
+          type: string
+        displayScript:
+          type: string
+        displayCountry:
+          type: string
+        displayVariant:
+          type: string
+        displayName:
+          type: string
+    Time:
+      type: object
+      properties:
+        time:
+          format: int64
+          type: integer
+        hours:
+          format: int32
+          type: integer
+        minutes:
+          format: int32
+          type: integer
+        seconds:
+          format: int32
+          type: integer
+        timeImpl:
+          format: int64
+          type: integer
+        timezoneOffset:
+          format: int32
+          type: integer
+        calendarDate:
+          $ref: '#/components/schemas/Date'
+        year:
+          format: int32
+          type: integer
+        month:
+          format: int32
+          type: integer
+        day:
+          format: int32
+          type: integer
+        date:
+          format: int32
+          type: integer
+    TimeZone:
+      type: object
+      properties:
+        ID:
+          type: string
+        rawOffset:
+          format: int32
+          type: integer
+        iD:
+          type: string
+        displayName:
+          type: string
+        dSTSavings:
+          format: int32
+          type: integer
+    UpdateBillDetailRequestDto:
+      type: object
+      properties:
+        current:
+          $ref: '#/components/schemas/BillDetailDto'
+        updated:
+          $ref: '#/components/schemas/BillDetailDto'
+        loginBranchCode:
+          type: string
+    UpdateBillDetailResponseDto:
+      type: object
+      properties:
+        rowsUpdated:
+          format: int32
+          type: integer
+        errorMessage:
+          type: string
+        mBoolean:
+          type: boolean

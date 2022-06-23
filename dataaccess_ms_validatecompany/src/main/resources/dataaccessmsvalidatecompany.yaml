@@ -1,0 +1,398 @@
+---
+openapi: 3.0.3
+info:
+  title: dataaccess-ms-validatecompany
+  description: Dataaccess Ms Validate Company microservice to validate data related
+    to company service.
+  termsOfService: Teresol Proprioty Rights Reserved
+  contact:
+    name: Teresol Support
+    url: http://teresol.com/contact
+    email: techsupport@teresol.com
+  version: ver 1.0.0
+paths:
+  /dataaccess-ms-validatecompany/damsValidateBill:
+    post:
+      tags:
+      - Main Resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateBillDetailRequestDto'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+  /dataaccess-ms-validatecompany/damsValidateCompany:
+    post:
+      tags:
+      - Main Resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateCompanyRequestDto'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+  /dataaccess-ms-validatecompany/damsValidateCompanyAccount:
+    post:
+      tags:
+      - Main Resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateCompanyAccountRequestDto'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+components:
+  schemas:
+    CalendarDate:
+      type: object
+      properties:
+        era:
+          $ref: '#/components/schemas/Era'
+        year:
+          format: int32
+          type: integer
+        month:
+          format: int32
+          type: integer
+        dayOfMonth:
+          format: int32
+          type: integer
+        dayOfWeek:
+          format: int32
+          type: integer
+        leapYear:
+          type: boolean
+        hours:
+          format: int32
+          type: integer
+        minutes:
+          format: int32
+          type: integer
+        seconds:
+          format: int32
+          type: integer
+        millis:
+          format: int32
+          type: integer
+        fraction:
+          format: int64
+          type: integer
+        normalized:
+          type: boolean
+        zoneinfo:
+          $ref: '#/components/schemas/TimeZone'
+        zoneOffset:
+          format: int32
+          type: integer
+        daylightSaving:
+          format: int32
+          type: integer
+        forceStandardTime:
+          type: boolean
+        locale:
+          $ref: '#/components/schemas/Locale'
+        timeOfDay:
+          format: int64
+          type: integer
+        standardTime:
+          type: boolean
+        daylightTime:
+          type: boolean
+        zone:
+          $ref: '#/components/schemas/TimeZone'
+    Date:
+      type: object
+      properties:
+        era:
+          $ref: '#/components/schemas/Era'
+        year:
+          format: int32
+          type: integer
+        month:
+          format: int32
+          type: integer
+        dayOfMonth:
+          format: int32
+          type: integer
+        dayOfWeek:
+          format: int32
+          type: integer
+        leapYear:
+          type: boolean
+        hours:
+          format: int32
+          type: integer
+        minutes:
+          format: int32
+          type: integer
+        seconds:
+          format: int32
+          type: integer
+        millis:
+          format: int32
+          type: integer
+        fraction:
+          format: int64
+          type: integer
+        normalized:
+          type: boolean
+        zoneinfo:
+          $ref: '#/components/schemas/TimeZone'
+        zoneOffset:
+          format: int32
+          type: integer
+        daylightSaving:
+          format: int32
+          type: integer
+        forceStandardTime:
+          type: boolean
+        locale:
+          $ref: '#/components/schemas/Locale'
+        timeOfDay:
+          format: int64
+          type: integer
+        standardTime:
+          type: boolean
+        daylightTime:
+          type: boolean
+        zone:
+          $ref: '#/components/schemas/TimeZone'
+        cachedYear:
+          format: int32
+          type: integer
+        cachedFixedDateJan1:
+          format: int64
+          type: integer
+        cachedFixedDateNextJan1:
+          format: int64
+          type: integer
+        normalizedYear:
+          format: int32
+          type: integer
+        cachedJan1:
+          format: int64
+          type: integer
+    Era:
+      type: object
+      properties:
+        name:
+          type: string
+        abbr:
+          type: string
+        since:
+          format: int64
+          type: integer
+        sinceDate:
+          $ref: '#/components/schemas/CalendarDate'
+        localTime:
+          type: boolean
+        hash:
+          format: int32
+          type: integer
+        abbreviation:
+          type: string
+    Locale:
+      type: object
+      properties:
+        language:
+          type: string
+        script:
+          type: string
+        country:
+          type: string
+        variant:
+          type: string
+        extensionKeys:
+          uniqueItems: true
+          type: array
+          items:
+            format: byte
+            type: string
+        unicodeLocaleAttributes:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        unicodeLocaleKeys:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        iSO3Language:
+          type: string
+        iSO3Country:
+          type: string
+        displayLanguage:
+          type: string
+        displayScript:
+          type: string
+        displayCountry:
+          type: string
+        displayVariant:
+          type: string
+        displayName:
+          type: string
+    ResponseDto:
+      type: object
+      properties:
+        validate:
+          type: boolean
+        message:
+          type: string
+    Time:
+      type: object
+      properties:
+        time:
+          format: int64
+          type: integer
+        hours:
+          format: int32
+          type: integer
+        minutes:
+          format: int32
+          type: integer
+        seconds:
+          format: int32
+          type: integer
+        timeImpl:
+          format: int64
+          type: integer
+        timezoneOffset:
+          format: int32
+          type: integer
+        calendarDate:
+          $ref: '#/components/schemas/Date'
+        year:
+          format: int32
+          type: integer
+        month:
+          format: int32
+          type: integer
+        day:
+          format: int32
+          type: integer
+        date:
+          format: int32
+          type: integer
+    TimeZone:
+      type: object
+      properties:
+        ID:
+          type: string
+        rawOffset:
+          format: int32
+          type: integer
+        iD:
+          type: string
+        displayName:
+          type: string
+        dSTSavings:
+          format: int32
+          type: integer
+    ValidateBillDetailRequestDto:
+      required:
+      - branchCode
+      - loginBranchCode
+      - response
+      type: object
+      properties:
+        branchCode:
+          type: number
+          nullable: false
+        loginBranchCode:
+          type: string
+          nullable: false
+        transactionReferenceNo:
+          type: number
+        transactionReferenceYear:
+          type: number
+        transactionDate:
+          format: date
+          type: string
+        status:
+          type: number
+        onlineReferenceNo:
+          type: number
+        sourceBranchCode:
+          type: number
+        slipNo:
+          type: string
+        account1:
+          type: number
+        transactionTime:
+          $ref: '#/components/schemas/Time'
+        stan:
+          type: number
+        companyId:
+          type: number
+        billMonth:
+          type: number
+        contractAccount:
+          type: number
+        response:
+          minLength: 1
+          type: string
+          nullable: false
+    ValidateCompanyAccountRequestDto:
+      required:
+      - loginBranchCode
+      type: object
+      properties:
+        branchCode:
+          type: string
+        accountType:
+          type: string
+        customerNo:
+          type: string
+        runningNo:
+          type: string
+        loginBranchCode:
+          type: string
+          nullable: false
+        colBranchCode:
+          type: string
+        colAccountType:
+          type: string
+        colCustomerNo:
+          type: string
+        colRunningNo:
+          type: string
+        checkDigit:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+    ValidateCompanyRequestDto:
+      type: object
+      properties:
+        branchCode:
+          type: string
+        loginBranchCode:
+          type: string
+        accountType:
+          type: string
+        customerNo:
+          type: string
+        runningNo:
+          type: string
+        checkDigit:
+          type: string
